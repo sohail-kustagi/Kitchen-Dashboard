@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 const Dish = require('./models/Dish');
 const fs = require('fs');
+require('dotenv').config();
 
-// REPLACE THIS WITH YOUR ACTUAL MONGODB CONNECTION STRING
-const MONGO_URI = 'mongodb+srv://sohailkustagi1234_db_user:gGZmB5RLD5oNqL3M@cluster0.vv9pt47.mongodb.net/?appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+  console.error('FATAL ERROR: MONGO_URI is not defined.');
+  process.exit(1);
+}
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB Connected for Seeding'))
