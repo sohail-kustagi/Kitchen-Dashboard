@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { DishCard } from './components/DishCard';
 import { io } from 'socket.io-client';
+import { API_URL } from './config';
 
 export interface Dish {
   id: string;
@@ -16,7 +17,7 @@ interface BackendDish {
   isPublished: boolean;
 }
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = API_URL;
 
 export default function App() {
   const [dishes, setDishes] = useState<Dish[]>([]);

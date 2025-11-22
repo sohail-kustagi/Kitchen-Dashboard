@@ -8,14 +8,19 @@ require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app);
+
+// CORS Configuration
+const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: clientUrl,
     methods: ["GET", "POST", "PUT"]
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: clientUrl
+}));
 app.use(express.json());
 
 // MongoDB Connection
